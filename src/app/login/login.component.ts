@@ -24,4 +24,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  GoToTestMessage() {
+    this.router.navigate(['../testmessage'])
+  }
+
 }
