@@ -14,10 +14,11 @@ export class GetMessagesService {
 
   constructor(private http: HttpClient) { }
 
-  GetMessages()  {
+  GetMessages() {
     console.log('hello');
       this.http.get(this.url + "/message").subscribe(data => {
-        console.log(data) });
-      
+        console.log(data);
+        return data; 
+      });
   }
 }

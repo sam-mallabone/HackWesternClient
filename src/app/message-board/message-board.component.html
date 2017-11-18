@@ -5,4 +5,5 @@
 <button id="button1">Send</button>
 <h3>Latest Messages</h3>
 <ul id="MessageList"></ul>
+<p *ngFor="let m of messages">{{m.userName}}, {{m.sentiment}}</p>
 </div>
