@@ -8,6 +8,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { GetMessagesService } from './get-messages.service';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component'
+import {UsernameService} from './username.service'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { LoginComponent } from './login/login.component'
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [GetMessagesService],
+  providers: [GetMessagesService, UsernameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,4 +3,4 @@
 <p>Screen Name: </p> <input type="text" #username />
 <br>
 <br>
-<button routerLink="../message">Log In</button>
+<button (click)="SetUserName(username.value)">Continue</button>

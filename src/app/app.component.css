@@ -1,0 +1,8 @@
+body{
+    font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+    /* background-image: url("hackwestern.jpg"); */
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
+    background-position: left+350px top;
+    text-align: center;
+}
