@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
 
 @Component({
   selector: 'app-testmessage',
@@ -10,6 +10,10 @@ export class TestmessageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  displayEmo(){
+    
   }
 
 }
