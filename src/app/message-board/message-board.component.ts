@@ -56,4 +56,59 @@ export class MessageBoardComponent implements OnInit {
     this.GetMessages();
   }
 
+<<<<<<< HEAD
+=======
+  FilterMessages(angry: boolean, content: boolean, happy: boolean ) {
+    console.log('hello');
+    var temp = 0;
+    this.http.get(this.url + "/message").subscribe(data => {
+      //convert to seconds
+      var timeNow = Date.now() / 1000;
+      var temp = data.length;
+      //data.length isnt actually an error
+      for(var i = 0; i < temp; i++) {
+        if(parseFloat(data[i].sentiment) < 0.25 ){
+          data[i].sentiment = "😡";
+        }else if (parseFloat(data[i].sentiment) < 0.75){
+         data[i].sentiment = "😐";
+        }else {
+         data[i].sentiment = "😃";
+        }
+        //Removing the results that aren't supposed to be included
+        if(data[i].sentiment == "😡" && !angry) {
+          console.log("I went in angry "+ i);
+          data.splice(i, 1);
+        }
+        if(data[i].sentiment == "😐" && !content) {
+          console.log("I went in content"+ i);
+          data.splice(i, 1);
+        }
+        if(data[i].sentiment == "😃" && !happy) {
+          console.log("I went in happy"+ i);
+          data.splice(i, 1);
+        }
+        //unary operator to convert to number
+        var oldTime = +data[i].time;
+        oldTime = oldTime / 1000;
+        var timeDiff = Math.round(timeNow - oldTime);
+        if(timeDiff < 60){
+          data[i].time = timeDiff.toString() + " seconds ago";
+        }
+        else if(timeDiff < 3600){
+          data[i].time = Math.round((timeDiff / 60)).toString() + " minutes ago";
+        }
+        else if(timeDiff < 86400){
+          data[i].time = Math.round((timeDiff / 3600)).toString() + " hours ago"
+        }
+        else{
+          data[i].time = "Over one day ago"
+        }
+      }
+      //Data is type object array
+      data = data.reverse();
+      this.messages = data;
+      console.log(this.messages);
+    });
+  }
+>>>>>>> b23b96c0221e2dbc6a487120d332e8df84a9c055
 }

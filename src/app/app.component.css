@@ -1,8 +1,37 @@
+/*html{
+    padding: 0px;
+    margin: 0px;
+    background: linear-gradient(white 50%, grey );
+    background-color: grey;
+    background: height 1000px;
+    background-size: cover; 
+}
+*/
+
 body{
     font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
-    /* background-image: url("hackwestern.jpg"); */
-    background-size: 200px 200px;
-    background-repeat: no-repeat;
-    background-position: left+350px top;
+
+}
+
+
+textarea, input {
+  border: 2px solid black;
+  padding: 40px;
+  vertical-align: top
+}
+
+textarea, input, button {
+    font-family : inherit;
+    font-size   : 100%;
+}
+
+h1{
+    font-size: 40px;
+    color: rgb(60, 0, 97);
+    text-shadow: 1px 1px white;
+    text-align: center;
+}
+
+.title{
     text-align: center;
 }
