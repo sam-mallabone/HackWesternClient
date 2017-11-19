@@ -1,11 +1,12 @@
 <div class="left">
 <h1>Messaging Service</h1>
 <div>
-<p>Enter Message </p>
+<p class='p'>Enter Message: </p>
 <textarea name="Text1" cols="40" rows="5" id="Text1" #messageText></textarea>
 <div>
 <br>
 <button id="button1" (click)="PostMessage(messageText.value)">Send Message</button>
+<button id="button2" (click)="TestMessage()">Test Message</button>
 </div>
 </div>
 

@@ -9,14 +9,16 @@ h1,h3{
     text-align: center;
 
 }
-
+.p {
+    color: rgb(81, 0, 128);
+}
 .left {
     display:inline-block;
     position: relative;
     margin: 1%;
     float: left;
     width:46%;
-    margin-top: 1%;
+    margin-top: 22px;
     text-align: center;
 }
 

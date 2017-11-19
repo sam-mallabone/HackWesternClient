@@ -144,4 +144,9 @@ export class MessageBoardComponent implements OnInit {
       var partialURL = "../message/detail/" + message._id;
       this.router.navigate([partialURL])
   }
+
+  TestMessage() {
+    this.router.navigate(['../testmessage'])
+  }
+
 }
