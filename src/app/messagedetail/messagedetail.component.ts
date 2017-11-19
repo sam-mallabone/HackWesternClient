@@ -31,30 +31,31 @@ export class MessagedetailComponent implements OnInit {
     console.log(id);
     this.http.get(this.url + '/message/' + id)
         .subscribe(data => {
-              var mes = Object.assign([], data)
-              this.username = mes[0].username;
-              this.message = mes[0].message;
+              this.myMessage = data;
+              // var mes = Object.assign([], data)
+              // this.username = mes[0].username;
+              // this.message = mes[0].message;
               
-              var timeNow = Date.now() / 1000;
-              var oldTime = +mes[0].time;
-              oldTime = oldTime / 1000;
-              var timeDiff = Math.round(timeNow - oldTime);
-              if(timeDiff < 60){
-                this.time = timeDiff.toString() + " seconds ago";
-              }
-              else if(timeDiff < 3600){
-                this.time = Math.round((timeDiff / 60)).toString() + " minutes ago";
-              }
-              else if(timeDiff < 86400){
-                this.time = Math.round((timeDiff / 3600)).toString() + " hours ago"
-              }
-              this.sentiment= mes[0].sentiment;
-              this.anger = parseFloat(mes[0].anger) * 100;
-              this.joy = parseFloat(mes[0].joy) * 100;
-              this.surprise = parseFloat(mes[0].surprise) * 100;
-              this.sadness = parseFloat(mes[0].sadness) * 100;
-              this.fear = parseFloat(mes[0].fear) * 100;
-              this.myMessage = mes;
+              // var timeNow = Date.now() / 1000;
+              // var oldTime = +mes[0].time;
+              // oldTime = oldTime / 1000;
+              // var timeDiff = Math.round(timeNow - oldTime);
+              // if(timeDiff < 60){
+              //   this.time = timeDiff.toString() + " seconds ago";
+              // }
+              // else if(timeDiff < 3600){
+              //   this.time = Math.round((timeDiff / 60)).toString() + " minutes ago";
+              // }
+              // else if(timeDiff < 86400){
+              //   this.time = Math.round((timeDiff / 3600)).toString() + " hours ago"
+              // }
+              // this.sentiment= mes[0].sentiment;
+              // this.anger = parseFloat(mes[0].anger) * 100;
+              // this.joy = parseFloat(mes[0].joy) * 100;
+              // this.surprise = parseFloat(mes[0].surprise) * 100;
+              // this.sadness = parseFloat(mes[0].sadness) * 100;
+              // this.fear = parseFloat(mes[0].fear) * 100;
+              // this.myMessage = mes;
         });
   }
   GoBack() {
