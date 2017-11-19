@@ -47,10 +47,10 @@ export class MessageBoardComponent implements OnInit {
           data[i].time = timeDiff.toString() + " seconds ago";
         }
         else if(timeDiff < 3600){
-          data[i].time = Math.round((timeDiff / 60)).toString() + " minutes ago";
+          data[i].time = Math.round((timeDiff / 60)).toString() + " minute(s) ago";
         }
         else if(timeDiff < 86400){
-          data[i].time = Math.round((timeDiff / 3600)).toString() + " hours ago"
+          data[i].time = Math.round((timeDiff / 3600)).toString() + " hour(s) ago"
         }
         else{
           data[i].time = "Over one day ago"
@@ -92,20 +92,7 @@ export class MessageBoardComponent implements OnInit {
         }else {
          data[i].sentiment = "😃";
         }
-       
-        //Removing the results that aren't supposed to be included
-        // if(data[i].sentiment == "😡" && !angry) {
-        //   console.log("I went in angry "+ i);
-        //   data.splice(i, 1);
-        // }
-        // if(data[i].sentiment == "😐" && !content) {
-        //   console.log("I went in content"+ i);
-        //   data.splice(i, 1);
-        // }
-        // if(data[i].sentiment == "😃" && !happy) {
-        //   console.log("I went in happy"+ i);
-        //   data.splice(i, 1);
-        // }
+
         //unary operator to convert to number
         var oldTime = +data[i].time;
         oldTime = oldTime / 1000;
@@ -114,10 +101,10 @@ export class MessageBoardComponent implements OnInit {
           data[i].time = timeDiff.toString() + " seconds ago";
         }
         else if(timeDiff < 3600){
-          data[i].time = Math.round((timeDiff / 60)).toString() + " minutes ago";
+          data[i].time = Math.round((timeDiff / 60)).toString() + " minute(s) ago";
         }
         else if(timeDiff < 86400){
-          data[i].time = Math.round((timeDiff / 3600)).toString() + " hours ago"
+          data[i].time = Math.round((timeDiff / 3600)).toString() + " hour(s) ago"
         }
         else{
           data[i].time = "Over one day ago"

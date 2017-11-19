@@ -50,7 +50,7 @@ export class MessagedetailComponent implements OnInit {
               else if(timeDiff < 86400){
                 this.time = Math.round((timeDiff / 3600)).toString() + " hours ago"
               }
-              this.sentiment= parseFloat(data.sentiment) * 100;
+              this.sentiment= data.sentiment;
               this.anger = parseFloat(data.anger) * 100;
               this.joy = parseFloat(data.joy) * 100;
               this.surprise = parseFloat(data.surprise) * 100;

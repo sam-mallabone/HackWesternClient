@@ -1,2 +1,13 @@
+<p>Enter Message </p>
+<textarea name="Text1" cols="40" rows="5" id="Text1" #messageText></textarea>
+<button (click)="TestMessage(messageText.value)">Test Message</button>
 <button (click)='GoToLogin()'>To Log In</button>
 <button (click)='GoToMessages()'>To Messages</button>
+<div *ngIf="message">
+  <p><b>sentiment:</b>  {{message.sentiment}}</p>
+  <p><b>joy:</b>  {{message.joy}}</p>
+  <p><b>surprise:</b>  {{message.surprise}}</p>
+  <p><b>anger:</b>  {{message.anger}}</p>
+  <p><b>fear:</b>  {{message.fear}}</p>
+  <p><b>sadness:</b>  {{message.sadness}}</p>
+</div>
