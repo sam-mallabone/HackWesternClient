@@ -28,7 +28,7 @@ export class MessageBoardComponent implements OnInit {
     console.log('hello');
     this.http.get(this.url + "/message").subscribe(data => {
       //data.length isnt actually an error
-      for(var i = 0; i < data.length; i++) {
+      for(var i = 0; i < 5; i++) {
         if(parseFloat(data[i].sentiment) < 0.25){
           data[i].sentiment = "😡";
         } else if (parseFloat(data[i].sentiment) < 0.75){

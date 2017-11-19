@@ -1,10 +1,20 @@
+<html>
+<body>
+  <div class="left">
 <h1>Messaging Service</h1>
 <div>
-<p>Enter Message </p>
+<p>Enter Message: </p>
 <textarea name="Text1" cols="40" rows="5" id="Text1" #messageText></textarea>
-<button id="button1" (click)="PostMessage(messageText.value)">Send</button>
+<div>
+    <br>
+    <button id="button1" (click)="PostMessage(messageText.value)">Send Message</button>
+</div>
+</div>
+</div>
+<div class="right">
 <h3>Latest Messages</h3>
 <ul id="MessageList"></ul>
+
 <p *ngFor="let m of messages">
   {{m.userName}}<br>
   {{m.message}}<br>
@@ -12,3 +22,5 @@
   <em>At: {{m.time}}</em>
 </p>
 </div>
+</body>
+</html>
