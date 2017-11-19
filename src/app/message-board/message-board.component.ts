@@ -5,6 +5,7 @@ import { of } from 'rxjs/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators'
 import { UsernameService } from '../username.service'
+import {Router} from '@angular/router'
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -18,7 +19,7 @@ const httpOptions = {
 export class MessageBoardComponent implements OnInit {
   private url = "https://hackwesternserver-sammallabone.c9users.io/api";
   messages;
-  constructor(private getMessagesService: GetMessagesService, private http: HttpClient, private usernameService: UsernameService) { }
+  constructor(private getMessagesService: GetMessagesService, private http: HttpClient, private usernameService: UsernameService, private router: Router) { }
 
   ngOnInit() {
     this.GetMessages();
@@ -91,19 +92,20 @@ export class MessageBoardComponent implements OnInit {
         }else {
          data[i].sentiment = "😃";
         }
+       
         //Removing the results that aren't supposed to be included
-        if(data[i].sentiment == "😡" && !angry) {
-          console.log("I went in angry "+ i);
-          data.splice(i, 1);
-        }
-        if(data[i].sentiment == "😐" && !content) {
-          console.log("I went in content"+ i);
-          data.splice(i, 1);
-        }
-        if(data[i].sentiment == "😃" && !happy) {
-          console.log("I went in happy"+ i);
-          data.splice(i, 1);
-        }
+        // if(data[i].sentiment == "😡" && !angry) {
+        //   console.log("I went in angry "+ i);
+        //   data.splice(i, 1);
+        // }
+        // if(data[i].sentiment == "😐" && !content) {
+        //   console.log("I went in content"+ i);
+        //   data.splice(i, 1);
+        // }
+        // if(data[i].sentiment == "😃" && !happy) {
+        //   console.log("I went in happy"+ i);
+        //   data.splice(i, 1);
+        // }
         //unary operator to convert to number
         var oldTime = +data[i].time;
         oldTime = oldTime / 1000;
@@ -121,10 +123,36 @@ export class MessageBoardComponent implements OnInit {
           data[i].time = "Over one day ago"
         }
       }
+      var len = data.length;
+      var count = 0;
+      for(var i = 0; i < len; i++ ){
+        //Removing the results that aren't supposed to be included
+        if(data[count].sentiment == "😡" && !angry) {
+          console.log("I went in angry "+ i);
+          data.splice(count, 1);
+          continue;
+        }
+        if(data[count].sentiment == "😐" && !content) {
+          console.log("I went in content"+ i);
+          data.splice(count, 1);
+          continue;
+        }
+        if(data[count].sentiment == "😃" && !happy) {
+          console.log("I went in happy"+ i);
+          data.splice(count, 1);
+          continue;
+        }
+        count++;
+      }
       //Data is type object array
       data = data.reverse();
       this.messages = data;
       console.log(this.messages);
     });
+  }
+
+  GoToDetails(message) {
+      var partialURL = "../message/detail/" + message._id;
+      this.router.navigate([partialURL])
   }
 }

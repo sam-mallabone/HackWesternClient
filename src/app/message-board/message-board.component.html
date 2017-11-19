@@ -21,10 +21,13 @@
 </div>
 <div class="right">
 <h3>Latest Messages: </h3>
+<div class="scrollbox">
 <p *ngFor="let m of messages">
   {{m.userName}}<br>
   {{m.message}}<br>
   I'm Feeling .... {{m.sentiment}} <br>
-  <em>At: {{m.time}}</em>
+  <em>{{m.time}}</em>
+  <button (click)="GoToDetails(m)">Details</button>
 </p>
+</div>
 </div>
