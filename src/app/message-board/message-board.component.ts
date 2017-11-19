@@ -77,11 +77,13 @@ export class MessageBoardComponent implements OnInit {
 
   FilterMessages(angry: boolean, content: boolean, happy: boolean ) {
     console.log('hello');
+    var temp = 0;
     this.http.get(this.url + "/message").subscribe(data => {
       //convert to seconds
       var timeNow = Date.now() / 1000;
+      var temp = data.length;
       //data.length isnt actually an error
-      for(var i = 0; i < data.length; i++) {
+      for(var i = 0; i < temp; i++) {
         if(parseFloat(data[i].sentiment) < 0.25 ){
           data[i].sentiment = "😡";
         }else if (parseFloat(data[i].sentiment) < 0.75){
