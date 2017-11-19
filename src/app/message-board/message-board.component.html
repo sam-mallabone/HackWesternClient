@@ -7,10 +7,11 @@
 <h3>Filter the list to see only a certain emotion: </h3>
 <label>I want to see: </label>
 <ul>
-  <li>Anger 😡</li>
-  <li>Content 😐</li>
-  <li>Happy 😃</li>
+  <li>Anger 😡 <input #anger id="checkBox" type="checkbox" checked></li>
+  <li>Content 😐<input #content id="checkBox" type="checkbox" checked> </li>
+  <li>Happy 😃 <input #happy id="checkBox" type="checkbox" checked> </li>
 </ul>
+<button (click)="FilterMessages(anger.checked, content.checked, happy.checked)">Filter</button>
 <h3>Latest Messages: </h3>
 <p *ngFor="let m of messages">
   {{m.userName}}<br>
