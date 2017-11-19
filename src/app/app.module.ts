@@ -9,7 +9,8 @@ import { GetMessagesService } from './get-messages.service';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component'
 import {UsernameService} from './username.service';
-import { TestmessageComponent } from './testmessage/testmessage.component'
+import { TestmessageComponent } from './testmessage/testmessage.component';
+import { MessagedetailComponent } from './messagedetail/messagedetail.component'
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TestmessageComponent } from './testmessage/testmessage.component'
     MessageBoardComponent,
     LoginComponent,
     TestmessageComponent,
+    MessagedetailComponent,
     
   ],
   imports: [
