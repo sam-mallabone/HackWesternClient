@@ -30,7 +30,7 @@ export class MessageBoardComponent implements OnInit {
       //convert to seconds
       var timeNow = Date.now() / 1000;
       //data.length isnt actually an error
-      for(var i = 0; i < data.length; i++) {
+      for(var i = 0; i < 5; i++) {
         if(parseFloat(data[i].sentiment) < 0.25){
           data[i].sentiment = "😡";
         } else if (parseFloat(data[i].sentiment) < 0.75){
