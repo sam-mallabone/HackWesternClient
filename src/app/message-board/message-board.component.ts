@@ -27,6 +27,8 @@ export class MessageBoardComponent implements OnInit {
   GetMessages() : void {
     console.log('hello');
     this.http.get(this.url + "/message").subscribe(data => {
+      //convert to seconds
+      var timeNow = Date.now() / 1000;
       //data.length isnt actually an error
       for(var i = 0; i < 5; i++) {
         if(parseFloat(data[i].sentiment) < 0.25){
@@ -36,7 +38,25 @@ export class MessageBoardComponent implements OnInit {
         } else {
          data[i].sentiment = "😃";
         }
+        //unary operator to convert to number
+        var oldTime = +data[i].time;
+        oldTime = oldTime / 1000;
+        var timeDiff = Math.round(timeNow - oldTime);
+        if(timeDiff < 60){
+          data[i].time = timeDiff.toString() + " seconds ago";
+        }
+        else if(timeDiff < 3600){
+          data[i].time = Math.round((timeDiff / 60)).toString() + " minutes ago";
+        }
+        else if(timeDiff < 86400){
+          data[i].time = Math.round((timeDiff / 3600)).toString() + " hours ago"
+        }
+        else{
+          data[i].time = "Over one day ago"
+        }
       }
+      //Data is type object array
+      data = data.reverse();
       this.messages = data;
       console.log(this.messages);
     });
@@ -48,12 +68,10 @@ export class MessageBoardComponent implements OnInit {
     var stringTime = today.toString();
     var name = this.usernameService.GetUserName();
     var body = {userName: name, message: msg, time: stringTime, sentiment: " "};
-    //const req = this.http.post(this.url + '/message', body);
-    //req.subscribe();
-    console.log('before');
-    
-    console.log('after');
-    this.GetMessages();
+    const req = this.http.post(this.url + '/message', body);
+    req.subscribe();
+    setTimeout(() => {
+      this.GetMessages();
+    }, 1000);
   }
-
 }
