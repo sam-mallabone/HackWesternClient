@@ -19,10 +19,6 @@ export class TestmessageComponent implements OnInit {
   ngOnInit() {
   }
 
-  GoToLogin(){
-    this.router.navigate(['../login']);
-  }
-
   GoToMessages() {
     this.router.navigate(['../message']);
   }
@@ -31,17 +27,20 @@ export class TestmessageComponent implements OnInit {
     console.log("POST called");
     var today = Date.now();
     var stringTime = today.toString();
+    
     //var name = this.usernameService.GetUserName();
     var body = {userName: " ", message: msg, time: stringTime, sentiment: " "};
     const req = this.http.post(this.url + '/test', body);
     req.subscribe(data => 
     {
-      console.log(data);
-      data.anger = parseFloat(data.anger) * 100;
-      data.joy = parseFloat(data.joy) * 100;
-      data.surprise = parseFloat(data.surprise) * 100;
-      data.sadness = parseFloat(data.sadness) * 100;
-      data.fear = parseFloat(data.fear) * 100;
+       /*THIS CODE BELOW IS DEPRACTED BUT WORKS*/ 
+      // var mes = Object.assign([], data)
+      // //console.log(mes[1].anger);
+      // mes[0].anger = parseFloat(mes[0].anger) * 100 + " %";
+      // mes[0].joy = parseFloat(mes[0].joy) * 100 + " %";
+      // mes[0].surprise = parseFloat(mes[0].surprise) * 100 + " %";
+      // mes[0].sadness = parseFloat(mes[0].sadness) * 100 + " %";
+      // mes[0].fear = parseFloat(mes[0].fear) * 100 + " %";
 
       this.message = data;
     });

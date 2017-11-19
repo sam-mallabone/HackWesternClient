@@ -30,35 +30,36 @@ export class MessageBoardComponent implements OnInit {
     this.http.get(this.url + "/message").subscribe(data => {
       //convert to seconds
       var timeNow = Date.now() / 1000;
+      var mes = Object.assign([], data);
       //data.length isnt actually an error
-      for(var i = 0; i < data.length; i++) {
-        if(parseFloat(data[i].sentiment) < 0.25){
-          data[i].sentiment = "😡";
-        } else if (parseFloat(data[i].sentiment) < 0.75){
-         data[i].sentiment = "😐";
+      for(var i = 0; i < mes.length; i++) {
+        if(parseFloat(mes[i].sentiment) < 0.25){
+          mes[i].sentiment = "😡";
+        } else if (parseFloat(mes[i].sentiment) < 0.75){
+         mes[i].sentiment = "😐";
         } else {
-         data[i].sentiment = "😃";
+         mes[i].sentiment = "😃";
         }
         //unary operator to convert to number
         var oldTime = +data[i].time;
         oldTime = oldTime / 1000;
         var timeDiff = Math.round(timeNow - oldTime);
         if(timeDiff < 60){
-          data[i].time = timeDiff.toString() + " seconds ago";
+          mes[i].time = timeDiff.toString() + " seconds ago";
         }
         else if(timeDiff < 3600){
-          data[i].time = Math.round((timeDiff / 60)).toString() + " minute(s) ago";
+          mes[i].time = Math.round((timeDiff / 60)).toString() + " minute(s) ago";
         }
         else if(timeDiff < 86400){
-          data[i].time = Math.round((timeDiff / 3600)).toString() + " hour(s) ago"
+          mes[i].time = Math.round((timeDiff / 3600)).toString() + " hour(s) ago"
         }
         else{
-          data[i].time = "Over one day ago"
+          mes[i].time = "Over one day ago"
         }
       }
       //Data is type object array
-      data = data.reverse();
-      this.messages = data;
+      mes = mes.reverse();
+      this.messages = mes;
       console.log(this.messages);
     });
   }
@@ -80,60 +81,61 @@ export class MessageBoardComponent implements OnInit {
     console.log('hello');
     var temp = 0;
     this.http.get(this.url + "/message").subscribe(data => {
+      var mes = Object.assign([], data);
       //convert to seconds
       var timeNow = Date.now() / 1000;
-      var temp = data.length;
+      var temp = mes.length;
       //data.length isnt actually an error
       for(var i = 0; i < temp; i++) {
-        if(parseFloat(data[i].sentiment) < 0.25 ){
-          data[i].sentiment = "😡";
-        }else if (parseFloat(data[i].sentiment) < 0.75){
-         data[i].sentiment = "😐";
+        if(parseFloat(mes[i].sentiment) < 0.25 ){
+          mes[i].sentiment = "😡";
+        }else if (parseFloat(mes[i].sentiment) < 0.75){
+         mes[i].sentiment = "😐";
         }else {
-         data[i].sentiment = "😃";
+         mes[i].sentiment = "😃";
         }
 
         //unary operator to convert to number
-        var oldTime = +data[i].time;
+        var oldTime = +mes[i].time;
         oldTime = oldTime / 1000;
         var timeDiff = Math.round(timeNow - oldTime);
         if(timeDiff < 60){
-          data[i].time = timeDiff.toString() + " seconds ago";
+          mes[i].time = timeDiff.toString() + " seconds ago";
         }
         else if(timeDiff < 3600){
-          data[i].time = Math.round((timeDiff / 60)).toString() + " minute(s) ago";
+          mes[i].time = Math.round((timeDiff / 60)).toString() + " minute(s) ago";
         }
         else if(timeDiff < 86400){
-          data[i].time = Math.round((timeDiff / 3600)).toString() + " hour(s) ago"
+          mes[i].time = Math.round((timeDiff / 3600)).toString() + " hour(s) ago"
         }
         else{
           data[i].time = "Over one day ago"
         }
       }
-      var len = data.length;
+      var len = mes.length;
       var count = 0;
       for(var i = 0; i < len; i++ ){
         //Removing the results that aren't supposed to be included
-        if(data[count].sentiment == "😡" && !angry) {
+        if(mes[count].sentiment == "😡" && !angry) {
           console.log("I went in angry "+ i);
-          data.splice(count, 1);
+          mes.splice(count, 1);
           continue;
         }
-        if(data[count].sentiment == "😐" && !content) {
+        if(mes[count].sentiment == "😐" && !content) {
           console.log("I went in content"+ i);
-          data.splice(count, 1);
+          mes.splice(count, 1);
           continue;
         }
-        if(data[count].sentiment == "😃" && !happy) {
+        if(mes[count].sentiment == "😃" && !happy) {
           console.log("I went in happy"+ i);
-          data.splice(count, 1);
+          mes.splice(count, 1);
           continue;
         }
         count++;
       }
       //Data is type object array
-      data = data.reverse();
-      this.messages = data;
+      mes = mes.reverse();
+      this.messages = mes;
       console.log(this.messages);
     });
   }

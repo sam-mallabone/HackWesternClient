@@ -1,9 +1,15 @@
-<p>Enter Message </p>
-<textarea name="Text1" cols="40" rows="5" id="Text1" #messageText></textarea>
-<button (click)="TestMessage(messageText.value)">Test Message</button>
-<button (click)='GoToLogin()'>To Log In</button>
+<body>
+<h1>Enter Message to be Analyzed</h1>
 <button (click)='GoToMessages()'>To Messages</button>
+<div>
+<textarea name="Text1" cols="40" rows="5" id="Text1" #messageText></textarea>
+</div>
+<div>
+<button (click)="TestMessage(messageText.value)">Test Message</button>
+</div>
+
 <div *ngIf="message">
+  <label><b>All values are between 0 and 1</b></label>
   <p><b>sentiment:</b>  {{message.sentiment}}</p>
   <p><b>joy:</b>  {{message.joy}}</p>
   <p><b>surprise:</b>  {{message.surprise}}</p>
@@ -11,3 +17,4 @@
   <p><b>fear:</b>  {{message.fear}}</p>
   <p><b>sadness:</b>  {{message.sadness}}</p>
 </div>
+</body>
